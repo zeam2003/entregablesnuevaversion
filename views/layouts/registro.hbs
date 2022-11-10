@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+      html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  max-width: 560px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.bubbleWrapper {
+	padding: 10px 10px;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	align-self: flex-end;
+  color: #fff;
+}
+.inlineContainer {
+  display: inline-flex;
+}
+.inlineContainer.own {
+  flex-direction: row-reverse;
+}
+.inlineIcon {
+  width:20px;
+  object-fit: contain;
+}
+.ownBubble {
+	min-width: 60px;
+	max-width: 700px;
+	padding: 2px 10px;
+  margin: 6px 8px;
+	background-color: #5b5377;
+	border-radius: 16px 16px 16 16px;
+	border: 1px solid #443f56;
+ 
+}
+.otherBubble {
+	min-width: 60px;
+	max-width: 700px;
+	padding: 14px 18px;
+  margin: 6px 8px;
+	background-color: #6C8EA4;
+	border-radius: 16px 16px 16px 0;
+	border: 1px solid #54788e;
+  
+}
+.own {
+	align-self: flex-end;
+}
+.other {
+	align-self: flex-start;
+}
+span.own,
+span.other{
+  font-size: 14px;
+  color: grey;
+}
+    </style>
+</head>
+<body>
+    <main class="form-signin w-100 m-auto">
+        <form action="/api/productos" method="POST">
+            <h1 class="h3 mb-3 fw-normal text-center">Nuevo Producto</h1>
+            <div class="form-floating">
+                <input type="text" class="form-control" name="title" id="floatingInput" placeholder="ej: pinza " required>
+                <label for="floatingInput">Nombre</label>
+              </div>
+              <div class="form-floating">
+                <input type="number" class="form-control" name="price" id="floatingPrice" placeholder="ej: 200" required>
+                <label for="floatingPrice">Precio</label>
+              </div>
+              <div class="form-floating">
+                <input type="url" class="form-control" name="thumbail" id="floatingThumb" placeholder="ej: www.example.com" required>
+                <label for="floatingThumb">URL</label>
+              </div>
+          
+              <button class="w-100 btn btn-lg btn-primary  mb-3" id="enviar-carga" type="submit">Guardar</button>
+              <a href="/listado" class="w-100 btn btn-lg btn-success" role="button">Listado</a>
+              <p class="mt-5 mt-1 mb-3 text-muted text-center">&copy; 2022</p>
+        </form>
+
+        <div class="container">
+          <main class="form-signin w-100 m-auto">
+  
+            <h1>Listado</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                    </tr>
+                </thead>
+                
+                <tbody id="contenido_tabla">
+
+                </tbody>
+                
+                
+                {{!-- <div class="alert alert-danger" role="alert">
+                    No hay productos
+                </div>
+                <div>
+                    <a href="/registro" class="btn btn-primary" role="button">Nuevo</a>
+                </div> --}}
+                
+            </table>
+        
+
+        </div>
+        
+        <div class="container">
+          <div style="height: 25vh; overflow: auto; scroll-behavior: smooth;" id="mensajes">
+
+          </div>
+          
+          <form onsubmit="return enviarMensaje(this)">
+            <div class="input-group col-2 mb-3">
+              <input type="text" class="form-control" id="chat_mensaje" placeholder="Mensaje" aria-label="Mensaje">
+              <span class="input-group-text">@</span>
+              
+            </div>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" id="nombre" placeholder="Email" aria-label="Email" required>
+              <span class="input-group-text"></span>
+              <button class="btn btn-outline-secondary col-6" id="enviar_msj" type="submit">Enviar</button>
+            </div>
+          </form>
+          
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>
+
