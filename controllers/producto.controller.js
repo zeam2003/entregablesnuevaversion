@@ -1,4 +1,7 @@
 const fs = require('fs');
+const { faker } =  require('@faker-js/faker');
+faker.locale = 'es';
+const { commerce, image } = faker;
 const nombreArchivo = './data/productos.json'
 let productosAlmacenados =[];
 
@@ -22,15 +25,29 @@ let productosAlmacenados =[];
  */
 class Contenedor {
     constructor(nombreArchivo) {
-        this.obtener();
+        // this.obtener();
         this.nombreArchivo = nombreArchivo;
     }
 
     async obtener() {
         try {
-           const data = await fs.promises.readFile(nombreArchivo, 'utf-8');
-           productosAlmacenados = JSON.parse(data);
+        //    const data = await fs.promises.readFile(nombreArchivo, 'utf-8');
+        //    productosAlmacenados = JSON.parse(data);
            //console.log(productosAlmacenados)
+
+           let info = [];
+            const lista = [];
+            let cantidades = 10;
+            
+            for (let index = 0; index < cantidades; index++) {
+                if(!info.includes(info.product)) {
+                    info.push({id: index, title: commerce.product(), price: commerce.price(), thumbail: image.abstract()});
+                } else {
+                    console.log('duplicado')
+                }
+                
+            }
+            return info
         } catch (error) {
             console.log('error', error);
         }
