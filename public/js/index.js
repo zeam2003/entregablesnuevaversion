@@ -57,7 +57,18 @@ function avisoCarga(event) {
     });
     
     //console.log(msj)
-    socket.emit('new_msg', {autor: nombre, msj: msj, fecha: new Date().toLocaleString('es-es')});
+    socket.emit('new_msg', 
+        {
+            author: {
+                nombre: nombre,
+                apellido: apellido,
+                edad: edad,
+                alias: alias,
+                avatar: avatar,
+                fecha: new Date().toLocaleString('es-es')
+            },
+            text: msj
+        });
     return false;
 }
 
