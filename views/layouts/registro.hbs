@@ -11,14 +11,14 @@
 body {
   height: 100%;
 }
-
+/*
 body {
   display: flex;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
-}
+}*/
 
 .form-signin {
   max-width: 560px;
@@ -93,7 +93,19 @@ span.other{
     </style>
 </head>
 <body>
-    <main class="form-signin w-100 m-auto">
+  <main>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <span class="fs-4">Tienda</span>
+      </a>
+    </header>  
+    <div class="row">
+      <div class="col-md-5 col-lg-4 order-md-last">holi</div>
+      <div class="col-md-7 col-lg-8">holi</div>
+    </div>
+  </main>
+  
+    {{!-- <main class="form-signin w-100 m-auto">
         <form action="/api/productos" method="POST">
             <h1 class="h3 mb-3 fw-normal text-center">Nuevo Producto</h1>
             <div class="form-floating">
@@ -130,15 +142,7 @@ span.other{
                 <tbody id="contenido_tabla">
 
                 </tbody>
-                
-                
-                {{!-- <div class="alert alert-danger" role="alert">
-                    No hay productos
-                </div>
-                <div>
-                    <a href="/registro" class="btn btn-primary" role="button">Nuevo</a>
-                </div> --}}
-                
+      
             </table>
         
 
@@ -148,22 +152,40 @@ span.other{
           <div style="height: 25vh; overflow: auto; scroll-behavior: smooth;" id="mensajes">
 
           </div>
-          
-          <form onsubmit="return enviarMensaje(this)">
-            <div class="input-group col-2 mb-3">
-              <input type="text" class="form-control" id="chat_mensaje" placeholder="Mensaje" aria-label="Mensaje">
-              <span class="input-group-text">@</span>
-              
+          <div class="col">
+            <form onsubmit="return enviarMensaje(this)">
+            <div class="row">
+                <div class="input-group col-sm-12 mb-3">
+                  <input type="text" class="form-control" id="chat_mensaje" placeholder="Mensaje" aria-label="Mensaje">
+                  <span class="input-group-text">@</span>
+                </div>
+                <div class="input-group col-sm-6 mb-3">
+                  <input type="text" class="form-control" id="nombre" placeholder="nombre" aria-label="nombre" required>
+                  <span class="input-group-text"></span>
+                </div>  
+                <div class="input-group col-sm-6 mb-3">
+                  <input type="text" class="form-control" id="apellido" placeholder="apellido" aria-label="apellido" required>
+                </div>
             </div>
-            <div class="input-group mb-3">
-              <input type="email" class="form-control" id="nombre" placeholder="Email" aria-label="Email" required>
+            
+            
+            
+              
+              <input type="number" class="form-control" id="edad" placeholder="edad" aria-label="edad" required>
+              <input type="text" class="form-control" id="alias" placeholder="alias" aria-label="alias" required>
+              <input type="text" class="form-control" id="avatar" placeholder="avatar" aria-label="avatar" required>
+              
               <span class="input-group-text"></span>
               <button class="btn btn-outline-secondary col-6" id="enviar_msj" type="submit">Enviar</button>
             </div>
           </form>
+          </div>
+          
+
+          
           
         </div>
-    </main>
+    </main> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="socket.io/socket.io.js"></script>
     <script src="/js/index.js"></script>

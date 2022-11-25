@@ -32,9 +32,7 @@ app.get('/registro', (req, res) => {
 });
 
 app.get('/listado', async (req, res) => {
-    // let obtenerProducto =  localDB.obtenerProductos(20);
-    // console.log('esto tengo', obtenerProducto);
-    
+
     if (Productos.length == 0) {
         Productos = await localDB.obtenerProductosRandom()
         res.render('main', {layout: 'productos', Productos});
@@ -42,8 +40,6 @@ app.get('/listado', async (req, res) => {
         console.log('esto obtengo ', Productos)
         res.render('main', {layout: 'productos', Productos});
     }
-   
-    
 });
 
 
@@ -56,7 +52,6 @@ io.on('connection', async(socket) => {
    if( Productos.length == 0) {
     Productos = await localDB.obtenerProductosRandom();
     socket.emit('productos', Productos);
-    console.log('no hay nada')
    } else {
         socket.emit('productos', Productos);
    }
@@ -65,7 +60,7 @@ io.on('connection', async(socket) => {
 
     // escucha los mensajes
     socket.on('new_msg', data => {
-        //console.log(data);
+        console.log('recibo', data);
         Mensajes.push(data);
         io.sockets.emit('mensajes', Mensajes);
     });
